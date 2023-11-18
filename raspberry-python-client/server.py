@@ -11,7 +11,7 @@ server.listen(1)
 print("Listening for connections...")
 
 client, address = server.accept()
-
+print(f"Connected to {address}")
 try:
     while True:
         data = client.recv(1024)

@@ -6,7 +6,7 @@ load_dotenv()
 
 client = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
-client.connect((os.getenv("BLUETOOTH_CLIENT_MAC_ADDR="), 4))
+client.connect((os.getenv("BLUETOOTH_SERVER_MAC_ADDR"), 4))
 
 try:
     while True:
