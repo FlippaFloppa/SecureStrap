@@ -8,6 +8,7 @@ server = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_R
 
 server.bind((os.getenv("BLUETOOTH_SERVER_MAC_ADDR"), 4))
 server.listen(1)
+print("Listening for connections...")
 
 client, address = server.accept()
 
