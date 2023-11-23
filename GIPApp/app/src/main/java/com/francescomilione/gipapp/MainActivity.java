@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnConnessione;
     boolean connesso;
     Activity activity;
+    Funzionalita funzionalita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         btnConnessione = (Button)findViewById(R.id.btn_connessione);
         connesso = false;
         activity = this;
+
+        funzionalita = new Funzionalita(activity);
+
         btnConnessione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 mmSocket.connect();
                                 outStream = mmSocket.getInputStream();
-                                Thread a = new Thread(new ThreadSocketB(activity, outStream));
+                                Thread a = new Thread(new ThreadSocketB(activity, outStream, funzionalita));
                                 a.start();
                                 btnConnessione.setText("Disconnetti Bracciale");
                                 connesso = true;

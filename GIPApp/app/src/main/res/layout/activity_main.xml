@@ -24,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="phone" />
+        android:inputType="phone"
+        tools:text="@string/telefono" />
 
     <TextView
         android:id="@+id/textView2"
@@ -32,16 +33,41 @@
         android:layout_height="wrap_content"
         android:text="Metodo di invio" />
 
-    <Switch
-        android:id="@+id/polizia"
+    <RadioGroup
+        android:id="@+id/radio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Polizia" />
+        android:layout_height="wrap_content">
 
-    <Switch
-        android:id="@+id/contatto"
+        <RadioButton
+            android:id="@+id/polizia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Polizia" />
+
+        <RadioButton
+            android:id="@+id/contatto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contatto fidato" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/salva"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contatto fidato" />
+        android:text="Salva" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test chiamata" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test sms" />
 
 </LinearLayout>
