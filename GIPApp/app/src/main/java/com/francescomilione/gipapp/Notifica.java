@@ -28,7 +28,7 @@ public class Notifica{
 
     public void notifica(String titolo, String messaggio){
         this.createNotificationChannel();
-        Intent snoozeIntent = new Intent(activity, MainActivity.class);
+        Intent snoozeIntent = new Intent(activity, MainActivity3.class);
         snoozeIntent.setAction("Ciao");
         snoozeIntent.putExtra("Invia", true);
         PendingIntent snoozePendingIntent = PendingIntent.getActivity(activity, 0, snoozeIntent,

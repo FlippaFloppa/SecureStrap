@@ -4,70 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity3">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
     <Button
         android:id="@+id/btn_connessione"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:text="Connetti bracciale" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Numero di telefono contatto fidato" />
+        android:background="#778BF5FF"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        tools:text="@string/telefono" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Metodo di invio" />
-
-    <RadioGroup
-        android:id="@+id/radio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/polizia"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Polizia" />
+            android:text="Numero di telefono contatto fidato" />
 
-        <RadioButton
-            android:id="@+id/contatto"
+        <EditText
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contatto fidato" />
-    </RadioGroup>
+            android:ems="10"
+            android:inputType="phone"
+            tools:text="@string/telefono" />
 
-    <Button
-        android:id="@+id/salva"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Salva" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Metodo di invio" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test chiamata" />
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button3"
+            <RadioButton
+                android:id="@+id/polizia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Polizia" />
+
+            <RadioButton
+                android:id="@+id/contatto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contatto fidato" />
+
+            <Button
+                android:id="@+id/salva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salva" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <Space
         android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test sms" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="test sms" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="test chiamata" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="test notifica" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,25 +1,23 @@
 package com.francescomilione.gipapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity3 extends AppCompatActivity {
 
     private ListView listView;
     private ArrayList<String> mDeviceList = new ArrayList<String>();
@@ -29,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     BluetoothSocket mmSocket = null;
     BluetoothDevice mmDevice = null;
     InputStream outStream;
-    Button btnConnessione, button, button2, button3;
-    ImageView btnHome, btnSetting, btnRecord;
+    Button btnConnessione;
     boolean connesso;
     Activity activity;
     Funzionalita2 funzionalita;
@@ -38,30 +35,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_main);
 
 
         btnConnessione = (Button)findViewById(R.id.btn_connessione);
-        btnHome = (ImageView)findViewById(R.id.btnHome);
-        btnSetting = (ImageView)findViewById(R.id.btnSetting);
-        btnRecord = (ImageView)findViewById(R.id.btnRecord);
-
-        btnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent(MainActivity.this, Setting.class);
-                startActivity(sendIntent);
-            }
-        });
-
-        btnRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent(MainActivity.this, Records.class);
-                startActivity(sendIntent);
-            }
-        });
-
         connesso = false;
         activity = this;
 
@@ -116,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
 
 

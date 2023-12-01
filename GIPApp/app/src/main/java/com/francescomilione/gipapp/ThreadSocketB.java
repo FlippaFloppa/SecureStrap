@@ -22,10 +22,10 @@ import java.io.InputStream;
 public class ThreadSocketB implements Runnable {
     private Activity activity;
     private InputStream inSocket;
-    private Funzionalita f;
+    private Funzionalita2 f;
 
 
-    public ThreadSocketB(Activity activity, InputStream inSocket, Funzionalita funzionalita) {
+    public ThreadSocketB(Activity activity, InputStream inSocket, Funzionalita2 funzionalita) {
         this.inSocket = inSocket;
         this.activity = activity;
         this.f = funzionalita;
@@ -49,7 +49,7 @@ public class ThreadSocketB implements Runnable {
                     f.call();
 
                 }else if(m[0].toUpperCase().compareTo("NOTIFICA") == 0){
-                    f.notifica(m[0]);
+                    f.notifica(m[0], activity);
 
                 }else if(m[0].toUpperCase().compareTo("SMS") == 0) {
                     f.sendSms();
@@ -57,7 +57,7 @@ public class ThreadSocketB implements Runnable {
                 }else if(m[0].toUpperCase().compareTo("TUTTO") == 0) {
                     f.call();
                     f.sendSms();
-                    f.notifica(m[0]);
+                    f.notifica(m[0], activity);
                 }
 
 

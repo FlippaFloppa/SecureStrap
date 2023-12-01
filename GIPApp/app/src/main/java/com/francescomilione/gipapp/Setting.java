@@ -1,24 +1,22 @@
 package com.francescomilione.gipapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.net.Uri;
-import android.telephony.SmsManager;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
 
+public class Setting extends AppCompatActivity {
 
-public class Funzionalita {
     private Activity activity;
-    private Notifica notifica;
-
     private RadioGroup radio;
     private RadioButton polizia, contatto;
     private EditText phone;
@@ -26,16 +24,47 @@ public class Funzionalita {
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
-    public Funzionalita(Activity activity) {
-        this.activity = activity;
-        notifica = new Notifica(activity);
+    ImageView btnHome, btnSetting, btnRecord;
+    Funzionalita2 funzionalita;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.setting);
+
+        funzionalita = new Funzionalita2(this);
+
+        btnHome = (ImageView)findViewById(R.id.btnHome);
+        btnSetting = (ImageView)findViewById(R.id.btnSetting);
+        btnRecord = (ImageView)findViewById(R.id.btnRecord);
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(Setting.this, MainActivity.class);
+                startActivity(sendIntent);
+            }
+        });
+
+        btnRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(Setting.this, Records.class);
+                startActivity(sendIntent);
+            }
+        });
+
+        activity = this;
+
 
         radio = (RadioGroup) activity.findViewById(R.id.radio);
         polizia = (RadioButton) activity.findViewById(R.id.polizia);
         contatto = (RadioButton) activity.findViewById(R.id.contatto);
         phone = (EditText)activity.findViewById(R.id.phone);
         salva = (Button) activity.findViewById((R.id.salva));
-        sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+
+        sharedPref = sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         editor = sharedPref.edit();
 
         String selezione = sharedPref.getString(activity.getString(R.string.selezione), "polizia");
@@ -71,12 +100,11 @@ public class Funzionalita {
             }
         });
 
-
         button2 = (Button) activity.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                call();
+                funzionalita.call();
             }
         });
 
@@ -84,7 +112,7 @@ public class Funzionalita {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSms();
+                funzionalita.sendSms();
             }
         });
 
@@ -92,49 +120,14 @@ public class Funzionalita {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                notifica("Test");
+                funzionalita.notifica("Test", activity);
             }
         });
+
+
     }
 
-    public void call(){
-        String selezione = sharedPref.getString(activity.getString(R.string.selezione), "polizia");
-        String telefono = sharedPref.getString(activity.getString(R.string.telefono), "+39");
 
-        if(selezione.compareTo("polizia") == 0)
-            call("+0001");
-        else
-        if(telefono.compareTo("") != 0)
-            call(telefono);
-    }
 
-    public void sendSms(){
-        String telefono = sharedPref.getString(activity.getString(R.string.telefono), "+39");
 
-        if(telefono.compareTo("") != 0)
-            sendSms(telefono);
-    }
-
-    public void sendSms(String numero){
-        GPSTracker gps = new GPSTracker(activity);
-        Location gpsTrovato = gps.getLocation();
-
-        /*
-        Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:"+numero));
-        smsIntent.putExtra("sms_body", gpsTrovato.getLatitude()+" "+gpsTrovato.getLongitude());
-        activity.startActivity(smsIntent);
-         */
-
-        SmsManager manager = SmsManager.getDefault();
-        manager.sendTextMessage(numero, null, "Aiuto questa è la mia posizione: https://www.google.com/maps/place/"+gpsTrovato.getLatitude()+","+gpsTrovato.getLongitude(), null, null);
-    }
-
-    public void call(String numero) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + numero));
-        activity.startActivity(intent);
-    }
-
-    public void notifica(String messaggio){
-        notifica.notifica("SERVIZIO ALLARME", messaggio);
-    }
 }
