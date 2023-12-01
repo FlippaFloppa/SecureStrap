@@ -120,7 +120,7 @@ public class Setting extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funzionalita.notifica("Test", activity);
+                funzionalita.notifica("Test");
             }
         });
 

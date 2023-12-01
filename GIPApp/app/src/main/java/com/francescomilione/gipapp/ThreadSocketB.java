@@ -49,7 +49,7 @@ public class ThreadSocketB implements Runnable {
                     f.call();
 
                 }else if(m[0].toUpperCase().compareTo("NOTIFICA") == 0){
-                    f.notifica(m[0], activity);
+                    f.notifica(m[0]);
 
                 }else if(m[0].toUpperCase().compareTo("SMS") == 0) {
                     f.sendSms();
@@ -57,7 +57,7 @@ public class ThreadSocketB implements Runnable {
                 }else if(m[0].toUpperCase().compareTo("TUTTO") == 0) {
                     f.call();
                     f.sendSms();
-                    f.notifica(m[0], activity);
+                    f.notifica(m[0]);
                 }
 
 

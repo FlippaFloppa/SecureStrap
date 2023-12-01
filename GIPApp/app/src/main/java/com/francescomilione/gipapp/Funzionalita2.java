@@ -15,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
-public class Funzionalita2 {
+public class Funzionalita2{
     private Activity activity;
     private Notifica notifica;
     private SharedPreferences sharedPref;
@@ -70,8 +70,7 @@ public class Funzionalita2 {
         activity.startActivity(intent);
     }
 
-    public void notifica(String messaggio, Activity act){
-        notifica = new Notifica(act);
+    public void notifica(String messaggio){
         notifica.notifica("SERVIZIO ALLARME", messaggio);
     }
 }

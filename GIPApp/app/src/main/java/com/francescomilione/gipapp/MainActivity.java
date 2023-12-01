@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+        connesso = false;
+        activity = this;
+
+        funzionalita = new Funzionalita2(activity);
+
 
         btnConnessione = (Button)findViewById(R.id.btn_connessione);
         btnHome = (ImageView)findViewById(R.id.btnHome);
@@ -61,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(sendIntent);
             }
         });
-
-        connesso = false;
-        activity = this;
-
-        funzionalita = new Funzionalita2(activity);
 
         btnConnessione.setOnClickListener(new View.OnClickListener() {
             @Override

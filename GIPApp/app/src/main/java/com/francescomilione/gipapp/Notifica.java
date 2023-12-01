@@ -28,13 +28,13 @@ public class Notifica{
 
     public void notifica(String titolo, String messaggio){
         this.createNotificationChannel();
-        Intent snoozeIntent = new Intent(activity, MainActivity3.class);
+        Intent snoozeIntent = new Intent(activity, MainActivity.class);
         snoozeIntent.setAction("Ciao");
         snoozeIntent.putExtra("Invia", true);
         PendingIntent snoozePendingIntent = PendingIntent.getActivity(activity, 0, snoozeIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+393291599577"));
-        PendingIntent call = PendingIntent.getActivity(activity, 0, callIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent call = PendingIntent.getActivity(activity, 0, callIntent, PendingIntent.FLAG_IMMUTABLE);
 
 
         NotificationCompat.Builder builder =
