@@ -5,7 +5,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -80,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
                         if (!mBluetoothAdapter.isEnabled()) {
                             Log.d("DEBUG", "Bluetooth non abilitato");
                         } else {
-                            mmDevice = mBluetoothAdapter.getRemoteDevice("B8:27:EB:B9:47:83");
+                            SharedPreferences sharedPref = sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
+                            String mact = sharedPref.getString(activity.getString(R.string.mac), "B8:27:EB:B9:47:83");
+                            mmDevice = mBluetoothAdapter.getRemoteDevice(mact);
                             try {
                                 mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
                             } catch (IOException e) {

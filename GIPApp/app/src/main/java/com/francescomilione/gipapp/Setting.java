@@ -19,7 +19,7 @@ public class Setting extends AppCompatActivity {
     private Activity activity;
     private RadioGroup radio;
     private RadioButton polizia, contatto;
-    private EditText phone;
+    private EditText phone, mac;
     private Button salva, button2, button3, button;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
@@ -63,13 +63,16 @@ public class Setting extends AppCompatActivity {
         contatto = (RadioButton) activity.findViewById(R.id.contatto);
         phone = (EditText)activity.findViewById(R.id.phone);
         salva = (Button) activity.findViewById((R.id.salva));
+        mac = (EditText)activity.findViewById(R.id.mac);
 
         sharedPref = sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         editor = sharedPref.edit();
 
         String selezione = sharedPref.getString(activity.getString(R.string.selezione), "polizia");
         String telefono = sharedPref.getString(activity.getString(R.string.telefono), "+39");
+        String mact = sharedPref.getString(activity.getString(R.string.mac), "B8:27:EB:B9:47:83");
 
+        mac.setText(mact);
         phone.setText(telefono);
         if(selezione.compareTo("contatto")==0)
             contatto.setChecked(true);
@@ -88,6 +91,11 @@ public class Setting extends AppCompatActivity {
 
                 if(phone.getText().toString().compareTo("") != 0) {
                     editor.putString(activity.getString(R.string.telefono), phone.getText().toString());
+                    editor.apply();
+                }
+
+                if(mac.getText().toString().compareTo("") != 0) {
+                    editor.putString(activity.getString(R.string.mac), mac.getText().toString());
                     editor.apply();
                 }
 
