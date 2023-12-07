@@ -1,7 +1,8 @@
 import bluetooth
+import os
 
 server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-server_sock.bind(("B8:27:EB:B9:47:83", bluetooth.PORT_ANY))
+server_sock.bind(("DC:A6:32:5A:54:E0", bluetooth.PORT_ANY))
 server_sock.listen(1)
 port = server_sock.getsockname()[1]
 
@@ -17,6 +18,7 @@ profiles=[bluetooth.SERIAL_PORT_PROFILE],
 
 while True:
 
+	os.system('sudo bluetoothctl discoverable on')
 	print("Waiting for connection on RFCOMM channel", port)
 	client_sock, client_info = server_sock.accept()
 	print("Accepted connection from", client_info)
