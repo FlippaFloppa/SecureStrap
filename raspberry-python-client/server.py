@@ -88,14 +88,15 @@ while True:
 	draw_text("Waiting...")
 
 	client_sock, client_info = server_sock.accept()
+	client_sock.setblocking(False)
+
 	print("Accepted connection from", client_info)
 
 	draw_text("Connected!")
 	time.sleep(2)
 
-	try:	
-		while client_sock is not None:
-
+	while client_sock is not None:
+		try:	
 			current_time = datetime.datetime.now()
 			draw_text(f'{current_time.hour}:{current_time.minute}:{current_time.second}')
 
@@ -118,13 +119,14 @@ while True:
 				trigger = False
 				time.sleep(3)
 			
+			client_sock.send('ping'.encode("utf-8"))
 			time.sleep(1/10)
-	except ConnectionResetError:
-		print("Disconnected.")
-		client_sock.close()
-		break
-	except OSError:
-		pass
+
+		except bluetooth.btcommon.BluetoothError as paolo:
+			print(paolo)
+			print("Disconnected.")
+			client_sock.close()
+			break
 
 server_sock.close()
 print("All done.")
